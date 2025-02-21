@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Network Query and Subgraph Extraction</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f0f4f8;
+        color: #333;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      #controls {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      .input-group {
+        display: flex;
+        align-items: center;
+      }
+
+      input[type="file"],
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #2980b9;
+      }
+      #cy {
+        width: 100%;
+        height: 70vh;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      #error {
+        color: #e74c3c;
+        margin-top: 10px;
+        text-align: center;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Network Query and Subgraph Extraction</h1>
+      <div id="controls">
+        <div class="input-group">
+          <input
+            type="file"
+            id="dataFile"
+            accept=".json,.csv"
+            style="display: none"
+          />
+          <button
+            onclick="document.getElementById('dataFile').click()"
+            style="width: 100%"
+          >
+            Choose File
+          </button>
+        </div>
+        <div class="input-group">
+          <button onclick="uploadData()" style="width: 100%">
+            Upload Data
+          </button>
+        </div>
+        <div class="input-group">
+          <input
+            type="text"
+            id="queryInput"
+            placeholder="Enter comma-separated node names"
+          />
+        </div>
+        <div class="input-group">
+          <button onclick="querySubgraph()" style="width: 100%">
+            Query Subgraph
+          </button>
+        </div>
+        <div class="input-group">
+          <select id="layoutSelect">
+            <option value="cose">COSE</option>
+            <option value="grid">Grid</option>
+            <option value="circle">Circle</option>
+            <option value="concentric">Concentric</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <button onclick="applyLayout()" style="">Apply Layout</button>
+        </div>
+      </div>
+      <div id="error"></div>
+      <div id="cy"></div>
+    </div>
+
+    <script src="./create_knowledge_graph.js" type="module"></script>
+  </body>
+</html>
