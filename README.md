@@ -28,8 +28,8 @@ soc-sign-bitcoinalpha.csv    # Example dataset
 ### Installation Steps
 1. Clone the repository:
    ```sh
-   git clone <repository_url>
-   cd <project_directory>
+   git clone https://github.com/Rajshah1302/knowledge_graph_cytoscape-main.git
+   cd knowledge_graph_cytoscape
    ```
 2. Start the Python server:
    ```sh
